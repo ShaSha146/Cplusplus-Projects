@@ -1,0 +1,210 @@
+Insertion(name, ssn, insertion_count)
+
+    if(no head node for list)
+    {
+        Create new node head
+	Set head node properties to inputs
+        set headPtr to head;
+        count++;
+        itemCount++;
+    }
+    if(head node is greater than inserted ssn)
+    { 
+        Create new node insertor
+        Set insertor properties to head node properties
+        Set head node properties to inserted values
+        Insert insertor after head node 
+        count++;
+        itemCount++;
+    }
+    Create new node mover
+    Point mover to head node
+    while(mover isn't empty)
+    {
+        if(mover's ssn == ssn)
+        {
+            return false;
+        }
+        if(mover's ssn > ssn )
+        {
+            Create new node insertor 
+            Set insertor properties to inserted properties 
+            Insert insertor before mover
+            count++;
+            itemCount++;
+        }
+        else
+	{
+	    Set mover to next node
+	}
+    }
+    Create new node end
+    Set end to head node
+    while(end doesnt equal the last node)
+    {
+        Set end to next node 
+    }
+    Creates new node insertor 
+    Set insertor properties to inserted properties
+    Inserts insertor after end
+    count++;
+    itemCount++;
+
+
+Delete(ssn, delete_count)
+    if(head node is empty)
+    {
+        return false;
+    }
+    if(head node contain removal value)
+    {
+        if(nodes exsist after head node)
+        {
+            Creates new node temp
+            Set node after head node values to temp's properties
+            if(nodes exsist after temp node)
+            {
+                Insert node after temp to be after head node
+            }
+            Set head node values to temp's values
+            count++;
+            itemCount--;
+        }
+        if(no nodes after head node)
+        {
+            Empty the head node
+            count++;
+            itemCount--;
+        }
+        
+    }
+    Make new node mover
+    Set mover to point to head node 
+    while(mover isn't the last node in the list) 
+    {
+        if(mover's value matches the value to be deleted)
+        {
+            Point node before mover to node after mover
+	    Point node after mover to node before mover
+            count++;
+            itemCount--;
+        }
+        else
+	{
+	    Set mover to next node
+	}
+    }
+
+    Make new node end
+    Set end to head node
+    while(end isn't the last node in the list)
+    {
+        Set end to next node
+    }
+    if(end values match vlaues to be deleted)
+    { 
+        Point node before end to null
+        count++;
+        itemCount--;
+    }
+    return false;
+
+}
+
+Retrieval(ssn)
+{
+    Make new node mover
+    Set mover to head node
+    while(mover isn't empty)
+    {
+	if(mover's value = ssn)
+	{
+	    return element number of mover
+	}
+	else
+	{
+	    Set mover to next node
+	}
+    }
+}
+
+DLL::DLL(DLL& n){
+    Set head node to null
+    Make new node temp
+    Set temp to n's head node
+    while(temp isn't empty)
+    {
+	if(head is empty)
+	{
+	    Set head values to temp's values
+	}
+	else
+	{
+	    Make new node mover
+	    Set mover to head node
+	    while(mover isn't the last node in list n)
+	    {
+		Set mover to next node
+            }
+	    Make new node insertor
+	    Set insertor values to temp's values
+	    Insert insertor after mover
+	}
+	Set temp to next node
+    }
+}
+
+DLL::~DLL(){
+    Make new node temp
+    Set temp to head node
+    while (temp isn't empty) {
+        delete temp;
+        Set temp to next node
+    }
+}
+
+The character “i” means insertion. 
+The software should insert the SSN and name to the end of the data in the array. 
+However, the software will NOT insert personal information with duplicate SSN. 
+For example, the first row and the third row have duplicate SSN. 
+The information of the first person will be added, but the third will not. 
+
+The character “d” means deletion. 
+In this example, there are two “d” rows. 
+The first one has SSN 760846483, which matches the fourth row. 
+The corresponding record in the array will be deleted, the following records will be moved up by one position (just like part 2 of Lab3). 
+The second “d” row does not match any existing SSN, the information of this row will be ignored.
+
+The character “r” means retrieval. 
+If there is a match with the given SSN, increase the retrieval counter by one. 
+In the above example, there are two “r” rows. 
+The first one has a match, the second one does not have a match.
+
+
+Main
+The software should process the information row-by-row, from the beginning to the end of the file.
+    DLL myList;
+    int i_count = 0;
+    int d_count = 0;
+    int r_count = 0;
+
+    Open file and reader
+    while(file end not reached)
+    {
+        string type =  first string read from file;
+        string socialnum =  second string read from file.
+        string name1 = third string read from file.
+        string name2 = fourth string read from file.
+        if(type="i")
+        {
+            myList.insert(socialnum, name1 + " " + name2, i_count);
+        }
+        else if(type="d")
+        {
+            myList.remove(socialnum, name1 + " " + name2, i_count);
+        }
+        else if(type="r")
+        {
+             myList.search(socialnum, name1 + " " + name2, i_count);
+        }
+    }

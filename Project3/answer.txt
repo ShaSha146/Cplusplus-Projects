@@ -1,0 +1,10 @@
+The code using a linked list implementation was faster than an array implementation because the codes used many more insertions and deletions 
+than retrievals of values. These kinds of operations are quicker in linked lists than in arrays. When inserting a value into an array if the value is being
+inserted into an empty spot in the array there are not many operations required; unless the array is out of size where it would now require allocating and creating a 
+new array and then moving each element of the old array to the new one. However when inserting an element into the middle or beginning of an array even if there is 
+space available, it requires moving all elements after the insertion index over to the next index sequenctially. The same issue arises when deleting an element from 
+the middle or beginning of an array, all elements after the deletion index need to be moved over to the previous index sequenctially. This isn't an issue in the linked 
+list implementation, to add an element into the list the previous and next node simply have to be pointed towards the new node that is being inserted and have the new 
+node point back at these nodes. The linked list implementation doesn't need to move any other elements in the list to do so and doesn't need to resize itself when new 
+elements are added. This is why the linked list implementation has a better speed performance than the array implementation because where in the array code the time 
+complexitiy of insertion/deletion was O(n) with n being the number of elements in array these operations were O(1) for a linked list. 
